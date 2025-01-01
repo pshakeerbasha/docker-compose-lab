@@ -1,1 +1,15 @@
-We love Devops
+import mysql.connector
+
+# Use 'db' as the hostname to access the MySQL service
+connection = mysql.connector.connect(
+    host='db',  # MySQL service name in Docker Compose
+    user='root',
+    password='rootpassword',
+    database='my_database'
+)
+cursor = connection.cursor()
+cursor.execute("SELECT DATABASE()")
+result = cursor.fetchone()
+print(f"Connected to: {result}")
+cursor.close()
+connection.close()
