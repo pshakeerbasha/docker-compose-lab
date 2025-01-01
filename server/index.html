@@ -1,10 +1,8 @@
 import mysql.connector
-import os
 
-# Get MySQL host from environment variable
-mysql_host = os.getenv('MYSQL_HOST', 'localhost')  # Default to 'localhost' if the variable is not set
+# Use 'db' as the hostname to access the MySQL service
 connection = mysql.connector.connect(
-    host=mysql_host,
+    host='db',  # MySQL service name in Docker Compose
     user='root',
     password='rootpassword',
     database='my_database'
@@ -12,6 +10,6 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 cursor.execute("SELECT DATABASE()")
 result = cursor.fetchone()
-print(f"Connected to database: {result}")
+print(f"Connected to: {result}")
 cursor.close()
 connection.close()
